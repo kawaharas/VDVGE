@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/play.png</file>
+        <file>resources/pause.png</file>
+        <file>resources/worldmap.png</file>
+        <file>resources/earthLarge.png</file>
+        <file>resources/perspective.png</file>
+        <file>resources/ortho.png</file>
+        <file>resources/default.png</file>
+        <file>resources/frontview.png</file>
+        <file>resources/leftsideview.png</file>
+        <file>resources/bottomview.png</file>
+        <file>resources/centering.png</file>
+        <file>resources/logo.png</file>
+    </qresource>
+</RCC>
