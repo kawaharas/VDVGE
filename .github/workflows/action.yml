@@ -9,9 +9,10 @@ jobs:
   windows:
     runs-on: windows-2019
     steps:
-#      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: ilammy/msvc-dev-cmd@v1
       - name: Checkout code
         uses: actions/checkout@v3
+#        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Extract version
         id: extract_version
