@@ -40,11 +40,11 @@ jobs:
           modules: 'qt5compat'
 
       - name: Build project
-#        shell: cmd
         run: |
-#          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          qmake
+          qmake6
           make
+#        shell: cmd
+#          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
 
       - name: Deploy (Windows)
         run: |
