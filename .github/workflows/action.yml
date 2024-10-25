@@ -9,6 +9,7 @@ jobs:
   windows:
     runs-on: windows-2019
     steps:
+      - uses: ilammy/msvc-dev-cmd@v1
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -39,7 +40,6 @@ jobs:
           modules: 'qt5compat'
 
       - name: Build project
-        uses: ilammy/msvc-dev-cmd@v1
 #        shell: cmd
         run: |
 #          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
