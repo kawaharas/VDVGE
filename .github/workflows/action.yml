@@ -6,18 +6,11 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-#        os: [windows-latest, ubuntu-latest, macos-latest]
-        os: [windows-latest]
-#        arch: [x64, arm64]
-        arch: [x64]
-
+  windows:
+    runs-on: windows-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+#      - name: Checkout code
+#        uses: actions/checkout@v3
 
       - name: Extract version
         id: extract_version
@@ -36,41 +29,19 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.*'
-          host: ${{ matrix.os }}
+          host: windows
           target: desktop
-          arch: ${{ matrix.arch }}
+          arch: x64
           modules: qtbase,qtgui,qtopengl,qtwidgets,qt5compat
+      - uses: actions/checkout@v3
 
       - name: Build project
         run: |
           qmake VDVGE.pro
           make
 
-#      - name: Build RPM package
-#        if: matrix.os == 'ubuntu-latest'
-#        run: |
-#          sudo apt-get install -y rpm
-#          mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-#          cp VDVGE.spec rpmbuild/SPECS/
-#          tar czf rpmbuild/SOURCES/VDVGE-${{ env.VERSION }}.tar.gz *
-#          rpmbuild -ba rpmbuild/SPECS/VDVGE.spec
-
       - name: Deploy (Windows)
-        if: matrix.os == 'windows'
         run: |
           windeployqt --release build\your_executable.exe
           powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
           scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
-
-#      - name: Deploy (Linux)
-#        if: matrix.os == 'ubuntu-latest'
-#        run: |
-#          mv rpmbuild/RPMS/x86_64/VDVGE-1.0-1.x86_64.rpm rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}-qt6-linux-x64.rpm
-#          scp rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}-qt6-linux-x64.rpm user@yourserver:/path/to/deploy
-
-#      - name: Deploy (MacOS)
-#        if: matrix.os == 'macos-latest'
-#        run: |
-#          macdeployqt build/your_executable.app -dmg
-#          mv build/your_executable.dmg vdvge-${{ env.VERSION }}-qt6-macos-x64.dmg
-#          scp vdvge-${{ env.VERSION }}-qt6-macos-x64.dmg user@yourserver:/path/to/deploy
