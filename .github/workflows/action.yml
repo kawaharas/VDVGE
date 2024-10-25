@@ -20,7 +20,8 @@ jobs:
           echo "VERSION=$version" >> $env:GITHUB_ENV
 
       - name: Install Visual Studio Build Tools
-        uses: actions/setup-vs@v1
+#        uses: actions/setup-vs@v1
+        uses: microsoft/setup-msbuild@v2
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
