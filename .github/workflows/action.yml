@@ -22,12 +22,13 @@ jobs:
       - name: Extract version
         id: extract_version
         run: |
-          if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+          if ${{ matrix.os }} == "windows-latest"; then
             full_version=$(grep -Po '(?<=win32:VERSION = ).*' VDVGE.pro)
             version=$(echo $full_version | cut -d'.' -f1-3)
           else
             version=$(grep -Po '(?<=else:VERSION = ).*' VDVGE.pro)
           fi
+          echo "VERSION=${version}" >> $GITHUB_ENV          fi
           echo "VERSION=${version}" >> $GITHUB_ENV
 
       - name: Install Qt
