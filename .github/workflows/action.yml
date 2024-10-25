@@ -22,11 +22,17 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: '6.*'
-          host: windows
-          target: desktop
-          arch: x64
-          modules: qtbase,qtgui,qtopengl,qtwidgets,qt5compat
+#          version: '6.*'
+#          host: windows
+#          target: desktop
+#          arch: x64
+#          modules: qtbase,qtgui,qtopengl,qtwidgets,qt5compat
+          aqtversion: '==3.1.*'
+          version: '6.8.0'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2022_64'
+          modules: 'qt5compat'
 
       - name: Build project
         run: |
