@@ -19,6 +19,9 @@ jobs:
           $version = $full_version -replace '\.\d+$'
           echo "VERSION=$version" >> $env:GITHUB_ENV
 
+      - name: Install Visual Studio Build Tools
+        uses: actions/setup-vs@v1
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
@@ -33,7 +36,7 @@ jobs:
           target: 'desktop'
           arch: 'win64_msvc2022_64'
           modules: 'qt5compat'
-
+        
       - name: Build project
         run: |
           qmake VDVGE.pro
