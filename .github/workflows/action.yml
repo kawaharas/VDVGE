@@ -22,14 +22,15 @@ jobs:
       - name: Extract version
         id: extract_version
         run: |
-          if (${{ matrix.os }} == "windows-latest") then
-            full_version=$(grep -Po '(?<=win32:VERSION = ).*' VDVGE.pro)
-            version=$(echo $full_version | cut -d'.' -f1-3)
-          else
-            version=$(grep -Po '(?<=else:VERSION = ).*' VDVGE.pro)
-          fi
-          echo "VERSION=${version}" >> $GITHUB_ENV          fi
-          echo "VERSION=${version}" >> $GITHUB_ENV
+          if ($env:RUNNER_OS -eq 'Windows') {
+            $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)').Matches.Value
+            $version = $full_version -replace '\.\d+$'
+            echo "VERSION=$version" >> $env:GITHUB_ENV
+          }
+          else {
+            $version = (grep -Po '(?<=else:VERSION = ).*' VDVGE.pro)
+            echo "VERSION=$version" >> $GITHUB_ENV
+          }
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
