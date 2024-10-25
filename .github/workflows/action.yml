@@ -7,7 +7,7 @@ on:
 
 jobs:
   windows:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -39,14 +39,14 @@ jobs:
           modules: 'qt5compat'
         
       - name: Build project
-        shell: cmd
+        shell: pwsh
         run: |
-          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          "C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
           qmake VDVGE.pro
           make
 
       - name: Deploy (Windows)
         run: |
-          windeployqt --release build\your_executable.exe
+          windeployqt --release build\vdvge.exe
           powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
           scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
