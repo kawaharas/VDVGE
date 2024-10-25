@@ -38,10 +38,8 @@ jobs:
           arch: 'win64_msvc2022_64'
           modules: 'qt5compat'
 
-      - uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: x64 
       - name: Build project
+        uses: ilammy/msvc-dev-cmd@v1
 #        shell: cmd
         run: |
 #          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
