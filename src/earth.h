@@ -3,7 +3,7 @@
 //
 // earth.h
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -26,7 +26,7 @@
 #define EARTH_H
 
 #include "common.h"
-#include "../src/define.h"
+#include "define.h"
 #include <QtGui>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QOpenGLWidget>

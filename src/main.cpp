@@ -3,7 +3,7 @@
 //
 // main.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -57,9 +57,9 @@ struct Option {
 
 int main( int argc, char *argv[] )
 {
-#ifndef __APPLE__
+//#ifndef __APPLE__
 	if ( argc == 1 ) {
-#endif
+//#endif
 		//////////////////////////////////////////////////////////////////////
 		// Window Mode
 		//////////////////////////////////////////////////////////////////////
@@ -96,7 +96,7 @@ int main( int argc, char *argv[] )
 
 		return application.exec();
 
-#ifndef __APPLE__
+//#ifndef __APPLE__
 	} else {
 
 		//////////////////////////////////////////////////////////////////////
@@ -194,7 +194,7 @@ int main( int argc, char *argv[] )
 
 		stream << "Finished." << ENDL;
 	}
-#endif
+//#endif
 
 	return 0;
 }

@@ -26,9 +26,9 @@
 #define GRADIENTS_H
 
 #include <QtGui>
-#include "../src/define.h"
+#include "define.h"
 #include "colortable.h"
-#include "../src/parameter.h"
+#include "parameter.h"
 
 const int MAX_SCALE_MARKINGS = 20;
 
@@ -145,7 +145,7 @@ private:
 
 class GradientWidget : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
 	GradientWidget( QWidget *parent = 0 );
@@ -175,7 +175,7 @@ signals:
 private:
 	void setDefault( int i );
 
-    GradientEditor *m_editor;
+	GradientEditor *m_editor;
 	PresetColorTableWidget *m_PresetColorTable01;
 	PresetColorTableWidget *m_PresetColorTable02;
 	PresetColorTableWidget *m_PresetColorTable03;

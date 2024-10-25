@@ -3,7 +3,7 @@
 //
 // coastline.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -176,11 +176,11 @@ void Coastline::draw()
 	if ( ( param.getBGColor().red()   == 255 ) &&
 		 ( param.getBGColor().green() == 255 ) &&
 		 ( param.getBGColor().blue()  == 255 ) ) {
-        glColor3f(  0.0,  0.0,  0.0 );
+		glColor3f( 0.0,  0.0,  0.0 );
 	} else {
-        glColor3f( 1.0f, 1.0f, 1.0f );
+		glColor3f( 1.0f, 1.0f, 1.0f );
 	}
-    glLineWidth( 1.2f );
+	glLineWidth( 1.2f );
 	glCallList( m_DisplayList );
 	glEnable( GL_LIGHTING );
 	glLineWidth( 1 );

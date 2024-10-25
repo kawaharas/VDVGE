@@ -3,7 +3,7 @@
 //
 // earth.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -38,7 +38,7 @@ Earth::Earth( QWidget *parent ) :
 
 #if QT_VERSION < 0x050000
 #ifndef Q_WS_WIN
-    glGenTextures( 1, &m_TexEarth );
+	glGenTextures( 1, &m_TexEarth );
 #endif
 #else
 #ifndef Q_OS_WIN
@@ -46,7 +46,7 @@ Earth::Earth( QWidget *parent ) :
 #endif
 #endif
 
-    readTexture();
+	readTexture();
 }
 
 Earth::~Earth()
@@ -62,7 +62,7 @@ void Earth::readTexture()
 {
 	QImage image_glformat;
 	QImage image_input;
-    image_input.load( ":/resources/earthLarge.png" );
+	image_input.load( ":/resources/earthLarge.png" );
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 	image_glformat = image_input.mirrored(false, true).convertToFormat(QImage::Format_ARGB32);
 #else
@@ -72,9 +72,9 @@ void Earth::readTexture()
 
 #if QT_VERSION < 0x050000
 #ifdef Q_WS_WIN
-    m_TexEarth = QGLWidget::bindTexture( image_glformat, GL_TEXTURE_2D, GL_RGBA );
+	m_TexEarth = QGLWidget::bindTexture( image_glformat, GL_TEXTURE_2D, GL_RGBA );
 #else
-    glBindTexture( GL_TEXTURE_2D, m_TexEarth );
+	glBindTexture( GL_TEXTURE_2D, m_TexEarth );
 #endif
 #else
 #ifdef Q_OS_WIN
@@ -88,7 +88,7 @@ void Earth::readTexture()
 #endif
 #endif
 
-    gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGBA,
+	gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGBA,
 					   image_glformat.width(), image_glformat.height(),
 					   GL_RGBA, GL_UNSIGNED_BYTE, image_glformat.bits() );
 
@@ -102,11 +102,11 @@ void Earth::draw()
 	glBindTexture( GL_TEXTURE_2D, m_TexEarth );
 	glEnable( GL_TEXTURE_2D );
 	glPushMatrix();
-        static GLfloat amb[]  = { 1.0f, 1.0f, 1.0f, 0.1f };
-        static GLfloat diff[] = { 1.0f, 1.0f, 1.0f, 0.9f };
+		static GLfloat amb[]  = { 1.0f, 1.0f, 1.0f, 0.1f };
+		static GLfloat diff[] = { 1.0f, 1.0f, 1.0f, 0.9f };
 		glMaterialfv( GL_FRONT_AND_BACK, GL_AMBIENT, amb );
 		glMaterialfv( GL_FRONT_AND_BACK, GL_DIFFUSE, diff );
-        glRotatef( -90.0f, 0.0, 0.0, 1.0f );
+		glRotatef( -90.0f, 0.0, 0.0, 1.0f );
 		gluSphere( m_Earth, EARTH_OBJECT_RADIUS, 64, 64 );
 	glPopMatrix();
 	glDisable( GL_TEXTURE_2D );

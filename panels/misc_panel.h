@@ -3,7 +3,7 @@
 //
 // misc_panel.h
 //
-// Copyright (c) 2012-2013 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //

@@ -29,7 +29,7 @@
 #include <QMetaType>
 //class QBypassWidget;
 
-#include "../src/parameter.h"
+#include "parameter.h"
 extern Parameter param;
 
 typedef QVector<float> FloatVector;

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>@EXECUTABLE@</string>
+    <key>CFBundleDisplayName</key>
+    <string>VDVGE @FULL_VERSION@</string>
+    <key>CFBundleIdentifier</key>
+    <string>jp.go.jamstec.@EXECUTABLE@</string>
+    <key>CFBundleVersion</key>
+    <string>@FULL_VERSION@</string>
+    <key>CFBundleShortVersionString</key>
+    <string>${QMAKE_FULL_VERSION}</string>
+    <key>NSHumanReadableCopyright</key>
+    <string>(C) 2012-2024 Shintaro Kawahara, Japan Agency for Marine-Earth Science and Technology (JAMSTEC)</string>
+</dict>
+</plist>

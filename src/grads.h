@@ -3,7 +3,7 @@
 //
 // grads.h
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -48,10 +48,10 @@
 using namespace std;
 
 typedef struct {
-    QString name;
-    int     level;
-    QString units;
-    QString description;
+	QString name;
+	int     level;
+	QString units;
+	QString description;
 } VarInfomation;
 
 typedef struct {
@@ -73,7 +73,7 @@ typedef struct {
 class Grads
 {
 public:
-    Grads();
+	Grads();
 	~Grads();
 
 	ErrorCode openFile( const QString &filename );

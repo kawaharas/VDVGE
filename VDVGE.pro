@@ -8,6 +8,14 @@ greaterThan(QT_MAJOR_VERSION, 5): QT += openglwidgets core5compat
 
 TARGET = vdvge
 TEMPLATE = app
+DESTDIR = build
+
+win32:VERSION = 1.2.0.0
+else:VERSION = 1.2.0
+QMAKE_TARGET_COMPANY = Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
+QMAKE_TARGET_PRODUCT = VDVGE
+QMAKE_TARGET_DESCRIPTION = Volume Data Visualizer for Google Earth
+QMAKE_TARGET_COPYRIGHT = (C) 2021-2024 Shintaro Kawahara
 
 CONFIG += release
 #CONFIG += release static
@@ -115,11 +123,24 @@ HEADERS += \
 RESOURCES += \
 	resources.qrc
 
-mac {
+macx {
+    QMAKE_INFO_PLIST = $$PWD/Info.plist.in
 	QMAKE_MACOS_DEPLOYMENT_TARGET = 10.5
+	QMAKE_APPLE_DEVICE_ARCHS = x86_64
+	greaterThan(QT_MAJOR_VERSION, 5) {
+	    QMAKE_MACOS_DEPLOYMENT_TARGET = 10.13
+		QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
+	}
+	greaterThan(QT_MAJOR_VERSION, 6) {
+	    QMAKE_MACOS_DEPLOYMENT_TARGET = 11
+		QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
+		greaterThan(QT_MINOR_VERSION, 8) {
+		    QMAKE_MACOS_DEPLOYMENT_TARGET = 12
+		}
+	}
 }
 
-unix:!mac {
+unix:!macx {
 	LIBS += -lGLU
 }
 

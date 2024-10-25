@@ -3,7 +3,7 @@
 //
 // parameter.h
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -28,7 +28,7 @@
 #include <QWidget>
 #include <QtGui>
 
-#include "../src/grads.h"
+#include "grads.h"
 
 const float OBJECT_POS_X = 0.0;
 const float OBJECT_POS_Y = 0.0;
@@ -186,7 +186,7 @@ class Parameter : public QObject
 	Q_OBJECT
 
 public:
-    Parameter();
+	Parameter();
 
 	void  initialize();
 	bool  save( const QString &filename );

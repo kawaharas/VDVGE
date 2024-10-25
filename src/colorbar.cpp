@@ -3,7 +3,7 @@
 //
 // colorbar.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -151,15 +151,15 @@ void ColorBar::drawColorBarBodyHorizontal()
 		for ( int i = 0; i < loop_x; i++ ) {
 			if ( ( j % 2 ) == 0 ) {
 				if ( ( i % 2 ) == 0 ) {
-                    glColor3f( 0.6f, 0.6f, 0.6f );
+					glColor3f( 0.6f, 0.6f, 0.6f );
 				} else {
-                    glColor3f( 0.4f, 0.4f, 0.4f );
+					glColor3f( 0.4f, 0.4f, 0.4f );
 				}
 			} else {
 				if ( ( i % 2 ) == 0 ) {
-                    glColor3f( 0.4f, 0.4f, 0.4f );
+					glColor3f( 0.4f, 0.4f, 0.4f );
 				} else {
-                    glColor3f( 0.6f, 0.6f, 0.6f );
+					glColor3f( 0.6f, 0.6f, 0.6f );
 				}
 			}
 			glBegin( GL_QUADS );
@@ -265,15 +265,15 @@ void ColorBar::drawColorBarBodyVertical()
 		for ( int i = 0; i < loop_x; i++ ) {
 			if ( ( j % 2 ) == 0 ) {
 				if ( ( i % 2 ) == 0 ) {
-                    glColor3f( 0.6f, 0.6f, 0.6f );
+					glColor3f( 0.6f, 0.6f, 0.6f );
 				} else {
-                    glColor3f( 0.4f, 0.4f, 0.4f );
+					glColor3f( 0.4f, 0.4f, 0.4f );
 				}
 			} else {
 				if ( ( i % 2 ) == 0 ) {
-                    glColor3f( 0.4f, 0.4f, 0.4f );
+					glColor3f( 0.4f, 0.4f, 0.4f );
 				} else {
-                    glColor3f( 0.6f, 0.6f, 0.6f );
+					glColor3f( 0.6f, 0.6f, 0.6f );
 				}
 			}
 			glBegin( GL_QUADS );
@@ -393,7 +393,7 @@ void ColorBar::drawScaleMarkings()
 			sprintf( format, "%%.%de", param.getColorBarDecimalPlacesNum() );
 			sprintf( strtmp1, format, value );
 			int eposition = 0;
-            int length = static_cast< int >( strlen( strtmp1 ) );
+			int length = static_cast< int >( strlen( strtmp1 ) );
 			for ( int p = 0; p < length; p++ ) {
 				if ( strtmp1[ p ] == 'e' ) {
 					eposition = p;
@@ -462,8 +462,8 @@ void ColorBar::drawScaleVertical( char *str, float level )
 //	int stringWidth  = fontMetrics.width( str );
 	int stringHeight = fontMetrics.height();
 
-    float minlevel = 0.1f;
-    float maxlevel = 0.9f;
+	float minlevel = 0.1f;
+	float maxlevel = 0.9f;
 	float markerPosY = m_VPHeight * ( minlevel + ( maxlevel - minlevel ) * level );
 	float textPosY   = markerPosY
 		- static_cast< float >( stringHeight ) / 2.0;
@@ -624,8 +624,8 @@ void ColorBar::drawMajorTickMarkVertical( float level )
 		return;
 	}
 
-    float minlevel = 0.1f;
-    float maxlevel = 0.9f;
+	float minlevel = 0.1f;
+	float maxlevel = 0.9f;
 	float markerPosX = m_Margin + m_LineSpace + m_ColorBarBodyHeight;
 	float markerPosY = m_VPHeight * ( minlevel + ( maxlevel - minlevel ) * level );
 	markerPosY += m_Offset_Y;
@@ -692,8 +692,8 @@ void ColorBar::drawMinorTickMarkVertical( float level )
 	type = param.getColorBarMinorTickMarkType();
 	if ( type == TICKMARK_NONE ) return;
 
-    float minlevel = 0.1f;
-    float maxlevel = 0.9f;
+	float minlevel = 0.1f;
+	float maxlevel = 0.9f;
 	float markerPosX = m_Margin + m_LineSpace + m_ColorBarBodyHeight;
 	float markerPosY = m_VPHeight * ( minlevel + ( maxlevel - minlevel ) * level );
 	markerPosY += m_Offset_Y;

@@ -3,7 +3,7 @@
 //
 // topo.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -393,14 +393,14 @@ void Topo::draw()
 	if ( param.IsSeaSurface() ) {
 		glDepthFunc( GL_LEQUAL );
 		glDisable( GL_LIGHTING );
-        glColor4f( 0.0, 0.0, 0.5f, 0.65f );
+		glColor4f( 0.0, 0.0, 0.5f, 0.65f );
 		glEnable( GL_BLEND );
 		glEnable( GL_DEPTH_TEST );
 		glBegin( GL_QUADS );
-        glVertex3f( 0.0,  0.0,  0.000001f );
-        glVertex3f( 1.0f, 0.0,  0.000001f );
-        glVertex3f( 1.0f, 1.0f, 0.000001f );
-        glVertex3f( 0.0,  1.0f, 0.000001f );
+		glVertex3f( 0.0,  0.0,  0.000001f );
+		glVertex3f( 1.0f, 0.0,  0.000001f );
+		glVertex3f( 1.0f, 1.0f, 0.000001f );
+		glVertex3f( 0.0,  1.0f, 0.000001f );
 		glEnd();
 		glDisable( GL_DEPTH_TEST );
 		glDisable( GL_BLEND );
@@ -420,18 +420,18 @@ void Topo::addElement( float x, float y, float z )
 	if ( z > 0.0 ) {
 		qreal red = 0.17 + z / 1000.0 * 0.3;
 		if ( red > 1.0 ) red = 1.0;
-        m_Color.push_back(
-            QVector4D( static_cast< float >( red ), 0.5f, 0.17f, 1.0f ) );
+		m_Color.push_back(
+			QVector4D( static_cast< float >( red ), 0.5f, 0.17f, 1.0f ) );
 		z *= static_cast< float >( param.getGroundScale() );
 	} else {
-        m_Color.push_back( QVector4D( 0.6f, 0.6f, 0.6f, 1.0f ) );
+		m_Color.push_back( QVector4D( 0.6f, 0.6f, 0.6f, 1.0f ) );
 		if ( param.IsSyncScale() ) {
 			z *= static_cast< float >( param.getGroundScale() );
 		} else {
 			z *= static_cast< float >( param.getSeaFloorScale() );
 		}
 	}
-    z /= ( grads.getGridXMax() - grads.getGridXMin() ) / 360.0 *
+	z /= ( grads.getGridXMax() - grads.getGridXMin() ) / 360.0 *
 		2.0 * M_PI * EARTH_RADIUS_WE_WGS84;
 	m_Vertex.push_back( QVector3D( x, y, z ) );
 }

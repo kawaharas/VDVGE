@@ -3,7 +3,7 @@
 //
 // boundingbox.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -69,19 +69,19 @@ void BoundingBox::draw( FaceType facetype )
 			if ( param.getViewDirection() == VIEW_DEFAULT ) {
 				if ( facetype == FRONT_SIDE ) {
 					glDisable( GL_LIGHTING );
-                    glColor3f( 1.0f, 0.0, 0.0 );
-                    drawText( -0.54f, -0.54f, -0.54f, grads.getGridXMin() );
-                    drawText(  0.54f, -0.54f, -0.54f, grads.getGridXMax() );
-                    glColor3f( 0.0, 1.0f, 0.0 );
-                    drawText(  0.54f, -0.54f,  0.54f, grads.getGridYMin() );
-                    drawText(  0.54f,  0.54f,  0.54f, grads.getGridYMax() );
-                    glColor3f( 0.0, 0.0, 1.0f );
+					glColor3f( 1.0f, 0.0, 0.0 );
+					drawText( -0.54f, -0.54f, -0.54f, grads.getGridXMin() );
+					drawText(  0.54f, -0.54f, -0.54f, grads.getGridXMax() );
+					glColor3f( 0.0, 1.0f, 0.0 );
+					drawText(  0.54f, -0.54f,  0.54f, grads.getGridYMin() );
+					drawText(  0.54f,  0.54f,  0.54f, grads.getGridYMax() );
+					glColor3f( 0.0, 0.0, 1.0f );
 					if ( param.getZUnit() == ZUNIT_METER ) {
-                        drawText( -0.54f,  0.54f, -0.54f, grads.getGridZMin() / 1000.0 );
-                        drawText( -0.54f,  0.54f,  0.54f, grads.getGridZMax() / 1000.0 );
+						drawText( -0.54f,  0.54f, -0.54f, grads.getGridZMin() / 1000.0 );
+						drawText( -0.54f,  0.54f,  0.54f, grads.getGridZMax() / 1000.0 );
 					} else {
-                        drawText( -0.54f,  0.54f, -0.54f, grads.getGridZMin() );
-                        drawText( -0.54f,  0.54f,  0.54f, grads.getGridZMax() );
+						drawText( -0.54f,  0.54f, -0.54f, grads.getGridZMin() );
+						drawText( -0.54f,  0.54f,  0.54f, grads.getGridZMax() );
 					}
 					glEnable( GL_LIGHTING );
 				}

@@ -3,7 +3,7 @@
 //
 // mainwindow.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -220,19 +220,19 @@ MainWindow::MainWindow( QWidget *parent ) :
 
 MainWindow::~MainWindow()
 {
-//    delete ui;
+//	delete ui;
 }
 
 void MainWindow::changeEvent( QEvent *e )
 {
 	QMainWindow::changeEvent( e );
 	switch ( e->type() ) {
-    case QEvent::LanguageChange:
+	case QEvent::LanguageChange:
 //		ui->retranslateUi( this );
-        break;
-    default:
-        break;
-    }
+		break;
+	default:
+		break;
+	}
 }
 
 void MainWindow::keyPressEvent( QKeyEvent *event )
@@ -382,7 +382,7 @@ void MainWindow::openGradsFile( const QString &filename )
 
 void MainWindow::setCurrentTime( int time )
 {
-    if ( grads.setData( time ) == true ) {
+	if ( grads.setData( time ) == true ) {
 //		emit setCurrentTimeSucceeded();
 //		ui->widget_Viewer->setCurrentData();
 		m_Viewer->setCurrentData();

@@ -686,7 +686,7 @@ void GradientEditor::setScaleMarkings()
 			sprintf( format, "%%.%de", param.getColorBarDecimalPlacesNum() );
 			sprintf( strtmp1, format, value );
 			int eposition = 0;
-            int length = static_cast< int >( strlen( strtmp1 ) );
+			int length = static_cast< int >( strlen( strtmp1 ) );
 			for ( int p = 0; p < length; p++ ) {
 				if ( strtmp1[ p ] == 'e' ) {
 					eposition = p;

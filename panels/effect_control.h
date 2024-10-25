@@ -3,7 +3,7 @@
 //
 // effect_control.h
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -33,7 +33,7 @@ extern Parameter param;
 
 class EffectControl : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
 	explicit EffectControl( QWidget *parent = 0 );

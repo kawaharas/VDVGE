@@ -3,7 +3,7 @@
 //
 // timedisplay.h
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -35,7 +35,7 @@
 #endif
 
 #include "util.h"
-#include "../src/parameter.h"
+#include "parameter.h"
 #include "app_parameter.h"
 
 extern Parameter param;

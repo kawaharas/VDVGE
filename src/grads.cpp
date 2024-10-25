@@ -3,7 +3,7 @@
 //
 // grads.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -22,7 +22,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "../src/grads.h"
+#include "grads.h"
 #include <ctime>
 
 extern AppParameter appParam;
@@ -56,8 +56,8 @@ ErrorCode Grads::openFile( const QString &filename )
 */
 	m_IsYRev = false;
 	m_IsZRev = false;
-    m_Min =  1e32f;
-    m_Max = -1e32f;
+	m_Min =  1e32f;
+	m_Max = -1e32f;
 	m_FileHeader = 0;
 	m_Undef = 0.0;
 	m_VarInfo.clear();
@@ -671,8 +671,8 @@ void Grads::checkMinMax()
 		}
 	}
 	stream.setFloatingPointPrecision( QDataStream::SinglePrecision );
-    float max = -1e32f;
-    float min =  1e32f;
+	float max = -1e32f;
+	float min =  1e32f;
 
 	if ( !m_IsSequential ) {
 		QFileInfo fileinfo( file );

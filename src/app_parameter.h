@@ -3,7 +3,7 @@
 //
 // app_parameter.h
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -28,7 +28,7 @@
 #include <QWidget>
 #include <QtGui>
 #include "common.h"
-#include "../src/define.h"
+#include "define.h"
 #include "errorcode.h"
 
 class AppParameter : public QObject

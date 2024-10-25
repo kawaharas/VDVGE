@@ -3,7 +3,7 @@
 //
 // viewer.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -119,9 +119,9 @@ void Viewer::initializeGL()
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
 
-    m_Earth = new Earth;
+	m_Earth = new Earth;
 	m_Logo  = new Logo( this );
-    m_ColorBar = new ColorBar( this );
+	m_ColorBar = new ColorBar( this );
 	m_BoundingBox = new BoundingBox( this );
 	m_TimeDisplay = new TimeDisplay( this );
 	m_ColorSlice = new ColorSlice;
@@ -166,7 +166,7 @@ void Viewer::setupViewport( int w, int h )
 
 void Viewer::paintGL()
 {
-    makeCurrent();
+	makeCurrent();
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 	m_GLFunc->glClearColor(
@@ -182,16 +182,16 @@ void Viewer::paintGL()
 
 	glLightfv( GL_LIGHT0, GL_POSITION, m_LightPosition );
 
-    GLfloat light0_diffuse[]  = { 1.0f, 1.0f, 1.0f, 0.0 };
-    GLfloat light0_ambient[]  = { 0.3f, 0.3f, 0.3f, 0.0 };
-    GLfloat light0_specular[] = { 1.0f, 1.0f, 1.0f, 0.0 };
-    GLfloat light0_position[] = { 1.0f, 1.0f, 1.0f, 0.0 };
+	GLfloat light0_diffuse[]  = { 1.0f, 1.0f, 1.0f, 0.0 };
+	GLfloat light0_ambient[]  = { 0.3f, 0.3f, 0.3f, 0.0 };
+	GLfloat light0_specular[] = { 1.0f, 1.0f, 1.0f, 0.0 };
+	GLfloat light0_position[] = { 1.0f, 1.0f, 1.0f, 0.0 };
 
-    GLfloat light1_diffuse[]  = { 1.0f, 1.0f, 1.0f, 0.0 };
-    GLfloat light1_ambient[]  = { 0.3f, 0.3f, 0.3f, 0.0 };
-    GLfloat light1_specular[] = { 1.0f, 1.0f, 1.0f, 0.0 };
+	GLfloat light1_diffuse[]  = { 1.0f, 1.0f, 1.0f, 0.0 };
+	GLfloat light1_ambient[]  = { 0.3f, 0.3f, 0.3f, 0.0 };
+	GLfloat light1_specular[] = { 1.0f, 1.0f, 1.0f, 0.0 };
 //	GLfloat light1_position[] = { 0.0, 0.0, 1.0f, 0.0 };
-    GLfloat light1_position[] = { -1.0f, 1.0f, -1.0f, 0.0 };
+	GLfloat light1_position[] = { -1.0f, 1.0f, -1.0f, 0.0 };
 
 	glShadeModel( GL_SMOOTH );
 
@@ -314,12 +314,12 @@ void Viewer::paintGL()
 			glRotatef( m_CurrentAngle, 0.0, 1.0, 0.0 ); // for auto rotation
 			glRotatef( -90.0, 1.0, 0.0, 0.0 );
 
-            m_Earth->draw();
+			m_Earth->draw();
 			m_BoundingBox->drawSphereBoundingBox();
 			m_ContourLine->drawSphereData();
 			m_ColorSlice->drawSphereData();
 			m_ContourLine->drawSphereData();
-            m_VolumeRender->drawSphereData();
+			m_VolumeRender->drawSphereData();
 			m_BoundingBox->drawSphereBoundingBox();
 		}
 		glPopMatrix();
@@ -370,13 +370,13 @@ void Viewer::mouseDoubleClickEvent( QMouseEvent *event )
 void Viewer::mouseMoveEvent( QMouseEvent *event )
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    int dx = event->position().x() - m_LastMousePosition.x();
-    int dy = event->position().y() - m_LastMousePosition.y();
+	int dx = event->position().x() - m_LastMousePosition.x();
+	int dy = event->position().y() - m_LastMousePosition.y();
 #else
-    int dx = event->x() - m_LastMousePosition.x();
-    int dy = event->y() - m_LastMousePosition.y();
+	int dx = event->x() - m_LastMousePosition.x();
+	int dy = event->y() - m_LastMousePosition.y();
 #endif
-    float objX, objY, objZ, objPitch, objYaw;
+	float objX, objY, objZ, objPitch, objYaw;
 	if ( !m_IsSphereView ) {
 		objX     = param.getObjectPosX();
 		objY     = param.getObjectPosY();
@@ -420,7 +420,7 @@ void Viewer::mouseMoveEvent( QMouseEvent *event )
 		param.setObjectAngleSphere( objPitch, objYaw, 0.0 );
 	}
 
-    m_LastMousePosition = event->pos();
+	m_LastMousePosition = event->pos();
 }
 
 void Viewer::wheelEvent( QWheelEvent *event )
@@ -512,7 +512,7 @@ void Viewer::setGradsData()
 	m_ScaleZ_SingleLayer = grads.getGridZMin() / maxDist;
 
 	texture3d.initialize();
-    setCurrentData();
+	setCurrentData();
 
 //	m_Topo->setData();
 	m_Topo->initialize();
@@ -523,7 +523,7 @@ void Viewer::setGradsData()
 
 void Viewer::setCurrentData()
 {
-    texture3d.setData();
+	texture3d.setData();
 	texture3d.setColorTable();
 	m_ColorBar->initialize();
 	m_ContourLine->initialize();
@@ -535,7 +535,7 @@ void Viewer::valueChanged( ValueType type )
 {
 	setFocus();
 
-    if ( type == CHANGE_DATARANGE ) {
+	if ( type == CHANGE_DATARANGE ) {
 		setCurrentData();
 	} else if ( type == CHANGE_COLORTABLE ) {
 		setColorTable();

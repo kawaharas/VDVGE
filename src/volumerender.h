@@ -3,7 +3,7 @@
 //
 // volumerender.h
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -27,9 +27,9 @@
 
 #include <QWidget>
 #include <QtGui>
-#include "../src/define.h"
-#include "../src/grads.h"
-#include "../src/parameter.h"
+#include "define.h"
+#include "grads.h"
+#include "parameter.h"
 #include "texture3d.h"
 #include "colorslice.h"
 

@@ -3,7 +3,7 @@
 //
 // colorbar.h
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -26,7 +26,7 @@
 #define COLORBAR_H
 
 #include "common.h"
-#include "../src/define.h"
+#include "define.h"
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QOpenGLWidget>
@@ -39,8 +39,8 @@
 
 #include <QtGui>
 
-#include "../src/grads.h"
-#include "../src/parameter.h"
+#include "grads.h"
+#include "parameter.h"
 #include "app_parameter.h"
 
 extern Grads grads;

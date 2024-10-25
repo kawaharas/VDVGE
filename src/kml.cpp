@@ -3,7 +3,7 @@
 //
 // kml.cpp
 //
-// Copyright (c) 2012-2015 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
+// Copyright (c) 2012 Shintaro KAWAHARA (kawahara@jamstec.go.jp)
 // Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 // http://www.jamstec.go.jp
 //
@@ -4128,7 +4128,7 @@ void KML::exportColorBar()
 			sprintf( format, "%%.%de", param.getColorBarDecimalPlacesNum() );
 			sprintf( strtmp1, format, value );
 			int eposition = 0;
-            int length = static_cast< int >( strlen( strtmp1 ) );
+			int length = static_cast< int >( strlen( strtmp1 ) );
 			for ( int p = 0; p < length; p++ ) {
 				if ( strtmp1[ p ] == 'e' ) {
 					eposition = p;
