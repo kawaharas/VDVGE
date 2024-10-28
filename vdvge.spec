@@ -33,7 +33,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %files
 %defattr(-,root,root)
 %{_bindir}/vdvge
-%{_docdir}/%{name}/LICENSE
+# %{_docdir}/%{name}/LICENSE
 
 %changelog
 * Fri Oct 25 2024 Shintaro Kawahara <kawahara@jamstec.go.jp> - 1.2.0
