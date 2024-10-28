@@ -61,8 +61,8 @@ jobs:
           pwd
           ls -laF ./rpmbuild/SOURCES
           rpmbuild -ba --define "_sourcedir $(pwd)/rpmbuild/SOURCES" rpmbuild/SPECS/vdvge.spec
-          ls -laF rpmbuild/SRPMS
-          ls -laF rpmbuild/RPMS
+          ls -laF /home/runner/rpmbuild/SRPMS
+          ls -laF /home/runner/rpmbuild/RPMS
 #          pwd
 #          ls -laF rpmbuild/TMP_SOURCES
 #          tar czf rpmbuild/SOURCES/vdvge-${{ env.VERSION }}-source.tar.gz *
@@ -80,8 +80,8 @@ jobs:
           name: vdvge-${{ env.VERSION }}-qt6-ubuntu-x64
 #          name: build-${{ matrix.os }}-${{ matrix.arch }}
           path: |
-            rpmbuild/RPMS/*
-            rpmbuild/SRPMS/*
+            /home/runner/rpmbuild/RPMS/*
+            /home/runner/rpmbuild/SRPMS/*
 #          *.zip
 #            build/*.zip
 #            build.zip
