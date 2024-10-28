@@ -5,7 +5,7 @@ Summary:        Volume Data Visualizer for Google Earth (VDVGE)
 
 License:        GPL-3.0
 URL:            https://github.com/kawaharas/VDVGE
-Source0:        %{name}-%{version}-source.tar.gz
+Source0:        %{_sourcedir}/%{name}-%{version}-source.tar.gz
 
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qttools-devel
