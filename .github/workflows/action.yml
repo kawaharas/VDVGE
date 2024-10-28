@@ -17,13 +17,16 @@ jobs:
       - name: Extract version
         id: extract_version
         run: |
-#          $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)').Matches.Value
-#          $version = $full_version -replace '\.\d+$'
-#          echo "VERSION=$version" >> $env:GITHUB_ENV
           $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)' | ForEach-Object { $_.Matches[0].Groups[1].Value })
           $version = $full_version -replace '\.\d+$'
           echo "VERSION=$version" >> $env:GITHUB_ENV
-          echo "Extracted version: $version"
+#          $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)').Matches.Value
+#          $version = $full_version -replace '\.\d+$'
+#          echo "VERSION=$version" >> $env:GITHUB_ENV
+
+      - name: Print version
+        run: |
+           echo "VERSION=${{ env.VERSION }}"
 
 #      - name: Install Visual Studio Build Tools
 #        uses: microsoft/setup-msbuild@v2
