@@ -1,4 +1,4 @@
-Name:           VDVGE
+Name:           vdvge
 Version:        1.2.0
 Release:        1%{?dist}
 Summary:        Volume Data Visualizer for Google Earth (VDVGE)
