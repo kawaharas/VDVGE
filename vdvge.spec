@@ -23,9 +23,6 @@ VDVGE is visualization software to generate a volume-rendering-like content for 
 make
 
 %install
-# %make_install
-# install -Dm644 %{_sourcedir}/README.md %{buildroot}%{_docdir}/%{name}/README.md
-# install -Dm644 %{_sourcedir}/LICENSE %{buildroot}%{_docdir}/%{name}/LICENSE
 rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}/usr/bin
 cp vdvge ${RPM_BUILD_ROOT}/usr/bin
@@ -36,7 +33,6 @@ rm -rf ${RPM_BUILD_ROOT}
 %files
 %defattr(-,root,root)
 %{_bindir}/vdvge
-# %{_docdir}/%{name}/README.md
 %{_docdir}/%{name}/LICENSE
 
 %changelog
