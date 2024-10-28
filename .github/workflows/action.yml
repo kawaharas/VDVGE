@@ -41,14 +41,16 @@ jobs:
       - name: Build RPM package
         run: |
           sudo apt-get install -y rpm
+          pwd
+          ls -laF
           mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS,TMP_SOURCES}
           mv vdvge.spec rpmbuild/SPECS/
           rsync -a --exclude='rpmbuild' ./ rpmbuild/TMP_SOURCES
           (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}-source.tar.gz -C ../TMP_SOURCES .)
           pwd
-          ls rpmbuild/SOURCES
+          ls -laF rpmbuild/SOURCES
           pwd
-          ls rpmbuild/TMP_SOURCES
+          ls -laF rpmbuild/TMP_SOURCES
           rpmbuild -ba rpmbuild/SPECS/vdvge.spec
 #          tar czf rpmbuild/SOURCES/vdvge-${{ env.VERSION }}-source.tar.gz *
 #          rpmbuild -ba rpmbuild/SPECS/vdvge.spec
