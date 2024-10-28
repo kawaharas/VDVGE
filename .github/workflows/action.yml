@@ -6,6 +6,51 @@ on:
       - main
 
 jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract version number
+        id: extract_version
+        run: |
+          version=$(grep -Po '(?<=else:VERSION = ).*' VDVGE.pro)
+          echo "Extracted version: $version"
+          echo "VERSION=$version" >> $GITHUB_ENV
+
+      - name: Print extracted version number
+        run: |
+           echo "VERSION=${{ env.VERSION }}"
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+#          version: '6.*'
+#          host: windows
+#          target: desktop
+#          arch: x64
+#          modules: qtbase,qtgui,qtopengl,qtwidgets,qt5compat
+          aqtversion: '==3.1.*'
+          version: '6.8.0'
+          host: 'linux'
+          target: 'desktop'
+          arch: 'linux_gcc_64'
+          modules: 'qt5compat'
+
+      - name: Build RPM package
+        run: |
+          sudo apt-get install -y rpm
+          mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          cp vdvge.spec rpmbuild/SPECS/
+          tar czf rpmbuild/SOURCES/vdvge-${{ env.VERSION }}-source.tar.gz *
+          rpmbuild -ba rpmbuild/SPECS/vdvge.spec
+
+      - name: Deploy (Linux)
+        run: |
+          mv rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}.x86_64.rpm rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}-qt6-linux-x64.rpm
+#          scp rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}-qt6-linux-x64.rpm user@yourserver:/path/to/deploy
+  
   windows:
     runs-on: windows-2019
     steps:
