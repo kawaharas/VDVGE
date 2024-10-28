@@ -1,0 +1,53 @@
+name: Build and Deploy Qt6 Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  windows:
+    runs-on: windows-2019
+    steps:
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Checkout code
+        uses: actions/checkout@v3
+#        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Extract version
+        id: extract_version
+        run: |
+          $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)').Matches.Value
+          $version = $full_version -replace '\.\d+$'
+          echo "VERSION=$version" >> $env:GITHUB_ENV
+
+#      - name: Install Visual Studio Build Tools
+#        uses: microsoft/setup-msbuild@v2
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+#          version: '6.*'
+#          host: windows
+#          target: desktop
+#          arch: x64
+#          modules: qtbase,qtgui,qtopengl,qtwidgets,qt5compat
+          aqtversion: '==3.1.*'
+          version: '6.8.0'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2022_64'
+          modules: 'qt5compat'
+
+      - name: Build project
+        run: |
+          qmake6 -spec win32-msvc
+          nmake
+#        shell: cmd
+#          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+
+      - name: Deploy (Windows)
+        run: |
+          windeployqt --release build\vdvge.exe
+          powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
+          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
