@@ -24,7 +24,6 @@ jobs:
           $version = $full_version -replace '\.\d+$'
           echo "VERSION=$version" >> $env:GITHUB_ENV
           echo "Extracted version: $version"
-        shell: pwsh
 
 #      - name: Install Visual Studio Build Tools
 #        uses: microsoft/setup-msbuild@v2
