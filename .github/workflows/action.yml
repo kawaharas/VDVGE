@@ -39,7 +39,7 @@ jobs:
           modules: 'qt5compat'
 
       - name: Build RPM package
-        uses; naveenrajm7/rpmbuild@master
+        uses: naveenrajm7/rpmbuild@master
         with:
           spec_file: "vdvge.spec"
   
