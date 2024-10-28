@@ -9,12 +9,13 @@ jobs:
   windows:
     runs-on: windows-2019
     steps:
-      - uses: ilammy/msvc-dev-cmd@v1
       - name: Checkout code
         uses: actions/checkout@v4
-#        uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Extract version
+      - name: Configure Developer Command Prompt for Microsoft Visual C++
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Extract version number
         id: extract_version
         run: |
           $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)' | ForEach-Object { $_.Matches[0].Groups[1].Value })
@@ -24,7 +25,7 @@ jobs:
 #          $version = $full_version -replace '\.\d+$'
 #          echo "VERSION=$version" >> $env:GITHUB_ENV
 
-      - name: Print version
+      - name: Print extracted version number
         run: |
            echo "VERSION=${{ env.VERSION }}"
 
@@ -67,7 +68,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build-vdvge-${{ env.VERSION }}-qt6-windows-x64
+          name: vdvge-${{ env.VERSION }}-qt6-windows-x64
 #          name: build-${{ matrix.os }}-${{ matrix.arch }}
           path: |
             build/*
