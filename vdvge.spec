@@ -19,7 +19,7 @@ VDVGE is visualization software to generate a volume-rendering-like content for 
 %build
 # qmake-qt6 VDVGE.pro
 # %make_build
-%{qt_make}
+qmake
 make
 
 %install
