@@ -58,3 +58,13 @@ jobs:
           windeployqt --release build\vdvge.exe
           powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
 #          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+#          name: build-${{ matrix.os }}-${{ matrix.arch }}
+          path: |
+            build/*.zip
+#            build.zip
+#            rpmbuild/RPMS/*
+#            build/*.dmg
