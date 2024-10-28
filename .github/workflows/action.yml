@@ -50,9 +50,9 @@ jobs:
           (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}-source.tar.gz -C ../TMP_SOURCES .)
           pwd
           ls -laF rpmbuild/SOURCES
-          pwd
-          ls -laF rpmbuild/TMP_SOURCES
           rpmbuild -ba rpmbuild/SPECS/vdvge.spec
+#          pwd
+#          ls -laF rpmbuild/TMP_SOURCES
 #          tar czf rpmbuild/SOURCES/vdvge-${{ env.VERSION }}-source.tar.gz *
 #          rpmbuild -ba rpmbuild/SPECS/vdvge.spec
 
