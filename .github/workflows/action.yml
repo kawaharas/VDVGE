@@ -54,7 +54,7 @@ jobs:
           mv vdvge.spec rpmbuild/SPECS/
           ls -laF rpmbuild/SPECS
           rsync -a --exclude='rpmbuild' ./ rpmbuild/TMP_SOURCES
-          (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}-source.tar.gz -C ../TMP_SOURCES .)
+          (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}.tar.gz -C ../TMP_SOURCES .)
           pwd
           ls -laF ./rpmbuild/SOURCES
           rpmbuild -ba --define "_sourcedir $(pwd)/rpmbuild/SOURCES" rpmbuild/SPECS/vdvge.spec
