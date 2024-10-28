@@ -53,7 +53,7 @@ jobs:
           mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS,TMP_SOURCES}
           mv vdvge.spec rpmbuild/SPECS/
           ls -laF rpmbuild/SPECS
-          rsync -a --exclude='rpmbuild' ./ rpmbuild/TMP_SOURCES
+          rsync -a --exclude='rpmbuild' ./ rpmbuild/TMP_SOURCES/vdvge-1.2.0/
           (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}.tar.gz -C ../TMP_SOURCES .)
           pwd
           ls -laF ./rpmbuild/SOURCES
@@ -62,7 +62,7 @@ jobs:
 #          ls -laF rpmbuild/TMP_SOURCES
 #          tar czf rpmbuild/SOURCES/vdvge-${{ env.VERSION }}-source.tar.gz *
 #          rpmbuild -ba rpmbuild/SPECS/vdvge.spec
-#          (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}-source.tar.gz -C ../TMP_SOURCES .)
+#          (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}-source.tar.gz -C ../TMP_SOURCES vdvge-1.2.0)
 
       - name: Deploy (Linux)
         run: |
