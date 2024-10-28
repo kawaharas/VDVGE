@@ -38,8 +38,15 @@ jobs:
           arch: 'linux_gcc_64'
           modules: 'qt5compat'
 
+#      - name: Set Qt environment variables
+#        run: |
+#          echo 'export QTDIR=/path/to/qt6' >> $GITHUB_ENV
+#          echo 'export PATH=$QTDIR/bin:$PATH' >> $GITHUB_ENV
+#          echo 'export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH' >> $GITHUB_ENV
+
       - name: Build RPM package
         run: |
+          which qmake
           sudo apt-get install -y rpm
           pwd
           ls -laF
