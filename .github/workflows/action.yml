@@ -44,6 +44,9 @@ jobs:
 #          echo 'export PATH=$QTDIR/bin:$PATH' >> $GITHUB_ENV
 #          echo 'export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH' >> $GITHUB_ENV
 
+      - name: Install Libraries
+        run: sudo apt-get install -y libglu1-mesa-dev
+
       - name: Build RPM package
         run: |
           which qmake
@@ -53,7 +56,7 @@ jobs:
           mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS,TMP_SOURCES}
           mv vdvge.spec rpmbuild/SPECS/
           ls -laF rpmbuild/SPECS
-          rsync -a --exclude='rpmbuild' ./ rpmbuild/TMP_SOURCES/vdvge-1.2.0/
+          rsync -a --exclude='rpmbuild' ./ rpmbuild/TMP_SOURCES/vdvge-${{ env.VERSION }}/
           (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}.tar.gz -C ../TMP_SOURCES .)
           pwd
           ls -laF ./rpmbuild/SOURCES
