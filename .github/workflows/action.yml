@@ -56,6 +56,11 @@ jobs:
       - name: Deploy (Windows)
         run: |
           windeployqt --release build\vdvge.exe
+#          powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
+#          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
+
+      - name: Compress files (Windows)
+        run: |
           powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
 #          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
 
@@ -65,6 +70,7 @@ jobs:
           name: build-windows-x64
 #          name: build-${{ matrix.os }}-${{ matrix.arch }}
           path: |
+            *.zip
             build/*.zip
 #            build.zip
 #            rpmbuild/RPMS/*
