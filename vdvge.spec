@@ -7,8 +7,8 @@ License:        GPL-3.0
 URL:            https://github.com/kawaharas/VDVGE
 Source0:        %{_sourcedir}/%{name}-%{version}-source.tar.gz
 
-BuildRequires:  qt6-qtbase-devel
-BuildRequires:  qt6-qttools-devel
+# BuildRequires:  qt6-qtbase-devel
+# BuildRequires:  qt6-qttools-devel
 
 %description
 VDVGE is visualization software to generate a volume-rendering-like content for Google Earth.
