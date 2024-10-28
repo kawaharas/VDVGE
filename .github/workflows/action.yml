@@ -17,8 +17,12 @@ jobs:
       - name: Extract version
         id: extract_version
         run: |
-          $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)').Matches.Value
+#          $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)').Matches.Value
+#          $version = $full_version -replace '\.\d+$'
+#          echo "VERSION=$version" >> $env:GITHUB_ENV
+          $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)' | ForEach-Object { $_.Matches[0].Groups[1].Value })
           $version = $full_version -replace '\.\d+$'
+          Write-Host "Extracted version: $version"
           echo "VERSION=$version" >> $env:GITHUB_ENV
 
 #      - name: Install Visual Studio Build Tools
@@ -50,4 +54,4 @@ jobs:
         run: |
           windeployqt --release build\vdvge.exe
           powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
-          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
+#          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
