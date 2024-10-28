@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 #        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Extract version
@@ -59,19 +59,20 @@ jobs:
 #          powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
 #          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
 
-      - name: Compress files (Windows)
-        run: |
-          powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
+#      - name: Compress files (Windows)
+#        run: |
+#          powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
 #          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build-windows-x64
+          name: build-vdvge-${{ env.VERSION }}-qt6-windows-x64
 #          name: build-${{ matrix.os }}-${{ matrix.arch }}
           path: |
-            *.zip
-            build/*.zip
+            build/*
+#          *.zip
+#            build/*.zip
 #            build.zip
 #            rpmbuild/RPMS/*
 #            build/*.dmg
