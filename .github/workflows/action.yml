@@ -67,10 +67,23 @@ jobs:
 #          rpmbuild -ba rpmbuild/SPECS/vdvge.spec
 #          (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}-source.tar.gz -C ../TMP_SOURCES vdvge-1.2.0)
 
-      - name: Deploy (Linux)
-        run: |
-          mv rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}.x86_64.rpm rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}-qt6-linux-x64.rpm
+#      - name: Deploy (Linux)
+#        run: |
+#          mv rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}.x86_64.rpm rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}-qt6-linux-x64.rpm
 #          scp rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}-qt6-linux-x64.rpm user@yourserver:/path/to/deploy
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vdvge-${{ env.VERSION }}-qt6-ubuntu-x64
+#          name: build-${{ matrix.os }}-${{ matrix.arch }}
+          path: |
+            rpmbuild/RPMS/**
+#          *.zip
+#            build/*.zip
+#            build.zip
+#            rpmbuild/RPMS/*
+#            build/*.dmg
   
   windows:
     runs-on: windows-2019
