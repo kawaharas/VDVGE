@@ -47,7 +47,7 @@ jobs:
           mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS,TMP_SOURCES}
           mv vdvge.spec rpmbuild/SPECS/
           ls -laF rpmbuild/SPECS
-          rsync -a --exclude='rpmbuild' ./ rpmbuild/TMP_SOURCES
+          rsync -a --exclude='rpmbuild' /home/runner/work/VDVGE/VDVGE rpmbuild/TMP_SOURCES
           (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}-source.tar.gz -C ../TMP_SOURCES .)
           pwd
           ls -laF rpmbuild/SOURCES
