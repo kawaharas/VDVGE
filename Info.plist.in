@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>${EXECUTABLE_NAME}</string>
+    <string>VDVGE</string>
     <key>CFBundleDisplayName</key>
     <string>VDVGE ${QMAKE_FULL_VERSION}</string>
     <key>CFBundleIdentifier</key>
-    <string>jp.go.jamstec.${EXECUTABLE_NAME}</string>
+    <string>jp.go.jamstec.vdvge</string>
     <key>CFBundleVersion</key>
     <string>${QMAKE_FULL_VERSION}</string>
     <key>CFBundleShortVersionString</key>
