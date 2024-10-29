@@ -101,7 +101,7 @@ jobs:
             build/*.dmg
 
   ubuntu:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -121,7 +121,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           aqtversion: '==3.1.*'
-          version: '6.8.0'
+          version: '6.2.4'
           host: 'linux'
           target: 'desktop'
           arch: 'linux_gcc_64'
