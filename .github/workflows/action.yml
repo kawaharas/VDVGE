@@ -6,6 +6,43 @@ on:
       - main
 
 jobs:
+  mac:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract version number
+        id: extract_version
+        run: |
+          version=$(grep -Po '(?<=else:VERSION = ).*' VDVGE.pro)
+          echo "Extracted version: $version"
+          echo "VERSION=$version" >> $GITHUB_ENV
+
+      - name: Print extracted version number
+        run: |
+           echo "VERSION=${{ env.VERSION }}"
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+#          version: '6.*'
+#          host: windows
+#          target: desktop
+#          arch: x64
+#          modules: qtbase,qtgui,qtopengl,qtwidgets,qt5compat
+          aqtversion: '==3.1.*'
+          version: '6.8.0'
+          host: 'mac'
+          target: 'desktop'
+          arch: 'clang_64'
+          modules: 'qt5compat'
+
+      - name: Build project
+        run: |
+          qmake -spec macx-xcode
+          nmake
+
   ubuntu:
     runs-on: ubuntu-latest
     steps:
