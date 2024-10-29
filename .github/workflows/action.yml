@@ -90,8 +90,9 @@ jobs:
   
       - name: Deploy
         run: |
-          macdeployqt build/vdvge.app -dmg
+          (cd build && macdeployqt vdvge.app -dmg)
           mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt6-macos.dmg
+#          macdeployqt build/vdvge.app -dmg
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
