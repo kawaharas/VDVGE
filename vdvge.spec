@@ -9,8 +9,8 @@ Source0:        %{_sourcedir}/%{name}-%{version}.tar.gz
 
 # BuildRequires:  qt6-qtbase-devel
 # BuildRequires:  qt6-qttools-devel
-BuildRequires:  qt6-base-dev
-BuildRequires:  qt6-tools-dev
+#BuildRequires:  qt6-base-dev
+#BuildRequires:  qt6-tools-dev
 
 %description
 VDVGE is visualization software to generate a volume-rendering-like content for Google Earth.
@@ -22,7 +22,8 @@ VDVGE is visualization software to generate a volume-rendering-like content for 
 # qmake-qt6 VDVGE.pro
 # %make_build
 qmake
-make
+#make
+%make_build
 
 %install
 rm -rf ${RPM_BUILD_ROOT}
