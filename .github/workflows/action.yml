@@ -52,7 +52,7 @@ jobs:
           path: |
             build/*
 
-  mac (Qt6.8 - macOS 12):
+  mac-qt6:
     runs-on: macos-latest
     steps:
       - name: Checkout code
@@ -101,7 +101,7 @@ jobs:
           path: |
             build/*.dmg
 
-  mac (Qt5.15.2 - macOS 10.13):
+  mac-qt5:
     runs-on: macos-latest
     steps:
       - name: Checkout code
