@@ -41,7 +41,18 @@ jobs:
       - name: Build project
         run: |
           qmake -spec macx-xcode
-          nmake
+          make
+
+      - name: Deploy (Windows)
+        run: |
+          macdeployqt build\vdvge.app -dmg
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vdvge-${{ env.VERSION }}-qt6-macos
+          path: |
+            build/*.dmg
 
   ubuntu:
     runs-on: ubuntu-latest
@@ -124,7 +135,7 @@ jobs:
 #            build.zip
 #            rpmbuild/RPMS/*
 #            build/*.dmg
-  
+
   windows:
     runs-on: windows-2019
     steps:
