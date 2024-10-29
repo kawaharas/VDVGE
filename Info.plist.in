@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleName</key>
-    <string>@EXECUTABLE@</string>
+    <string>${EXECUTABLE_NAME}</string>
     <key>CFBundleDisplayName</key>
-    <string>VDVGE @FULL_VERSION@</string>
+    <string>VDVGE ${QMAKE_FULL_VERSION}</string>
     <key>CFBundleIdentifier</key>
-    <string>jp.go.jamstec.@EXECUTABLE@</string>
+    <string>jp.go.jamstec.${EXECUTABLE_NAME}</string>
     <key>CFBundleVersion</key>
-    <string>@FULL_VERSION@</string>
+    <string>${QMAKE_FULL_VERSION}</string>
     <key>CFBundleShortVersionString</key>
     <string>${QMAKE_FULL_VERSION}</string>
     <key>NSHumanReadableCopyright</key>

@@ -12,8 +12,9 @@ DESTDIR = build
 
 win32:VERSION = 1.2.0.0
 else:VERSION = 1.2.0
-QMAKE_TARGET_COMPANY = Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
+QMAKE_APPLICATION_BUNDLE_NAME = VDVGE
 QMAKE_TARGET_PRODUCT = VDVGE
+QMAKE_TARGET_COMPANY = Japan Agency for Marine-Earth Science and Technology (JAMSTEC)
 QMAKE_TARGET_DESCRIPTION = Volume Data Visualizer for Google Earth
 QMAKE_TARGET_COPYRIGHT = (C) 2021-2024 Shintaro Kawahara
 
