@@ -15,7 +15,7 @@ jobs:
       - name: Extract version number
         id: extract_version
         run: |
-          version=$(grep -Po '(?<=else:VERSION = ).*' VDVGE.pro)
+          version=$(sed -n 's/^else:VERSION = //p' VDVGE.pro)
           echo "Extracted version: $version"
           echo "VERSION=$version" >> $GITHUB_ENV
 
