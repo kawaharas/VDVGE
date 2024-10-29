@@ -6,6 +6,52 @@ on:
       - main
 
 jobs:
+  windows:
+    runs-on: windows-2019
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure Developer Command Prompt for Microsoft Visual C++
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Extract version number
+        id: extract_version
+        run: |
+          $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)' | ForEach-Object { $_.Matches[0].Groups[1].Value })
+          $version = $full_version -replace '\.\d+$'
+          echo "VERSION=$version" >> $env:GITHUB_ENV
+
+      - name: Print extracted version number
+        run: |
+           echo "VERSION=${{ env.VERSION }}"
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          aqtversion: '==3.1.*'
+          version: '6.8.0'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2022_64'
+          modules: 'qt5compat'
+
+      - name: Build project
+        run: |
+          qmake6 -spec win32-msvc
+          nmake
+
+      - name: Deploy (Windows)
+        run: |
+          windeployqt --release build\vdvge.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vdvge-${{ env.VERSION }}-qt6-windows-x64
+          path: |
+            build/*
+
   mac:
     runs-on: macos-latest
     steps:
@@ -37,9 +83,12 @@ jobs:
         run: |
           qmake -spec macx-xcode
           xcodebuild -project VDVGE.xcodeproj
-          file build/vdvge.app/Contents/MacOS/vdvge
 
-      - name: Deploy (Windows)
+      - name: Check the target platform of the built binary
+          run: |
+            file build/vdvge.app/Contents/MacOS/vdvge
+  
+        - name: Deploy
         run: |
           macdeployqt build/vdvge.app -dmg
           mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt6-macos.dmg
@@ -71,11 +120,6 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-#          version: '6.*'
-#          host: windows
-#          target: desktop
-#          arch: x64
-#          modules: qtbase,qtgui,qtopengl,qtwidgets,qt5compat
           aqtversion: '==3.1.*'
           version: '6.8.0'
           host: 'linux'
@@ -83,124 +127,22 @@ jobs:
           arch: 'linux_gcc_64'
           modules: 'qt5compat'
 
-#      - name: Set Qt environment variables
-#        run: |
-#          echo 'export QTDIR=/path/to/qt6' >> $GITHUB_ENV
-#          echo 'export PATH=$QTDIR/bin:$PATH' >> $GITHUB_ENV
-#          echo 'export LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH' >> $GITHUB_ENV
-
       - name: Install Libraries
         run: sudo apt-get install -y libglu1-mesa-dev
 
       - name: Build RPM package
         run: |
-          which qmake
           sudo apt-get install -y rpm
-          pwd
-          ls -laF
           mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS,TMP_SOURCES}
           mv vdvge.spec rpmbuild/SPECS/
-          ls -laF rpmbuild/SPECS
           rsync -a --exclude='rpmbuild' ./ rpmbuild/TMP_SOURCES/vdvge-${{ env.VERSION }}/
           (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}.tar.gz -C ../TMP_SOURCES .)
-          pwd
-          ls -laF ./rpmbuild/SOURCES
           rpmbuild -ba --define "_sourcedir $(pwd)/rpmbuild/SOURCES" rpmbuild/SPECS/vdvge.spec
-          ls -laF /home/runner/rpmbuild/SRPMS
-          ls -laF /home/runner/rpmbuild/RPMS
-#          pwd
-#          ls -laF rpmbuild/TMP_SOURCES
-#          tar czf rpmbuild/SOURCES/vdvge-${{ env.VERSION }}-source.tar.gz *
-#          rpmbuild -ba rpmbuild/SPECS/vdvge.spec
-#          (cd rpmbuild/SOURCES && tar czf vdvge-${{ env.VERSION }}-source.tar.gz -C ../TMP_SOURCES vdvge-1.2.0)
-
-#      - name: Deploy (Linux)
-#        run: |
-#          mv rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}.x86_64.rpm rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}-qt6-linux-x64.rpm
-#          scp rpmbuild/RPMS/x86_64/vdvge-${{ env.VERSION }}-qt6-linux-x64.rpm user@yourserver:/path/to/deploy
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: vdvge-${{ env.VERSION }}-qt6-ubuntu-x64
-#          name: build-${{ matrix.os }}-${{ matrix.arch }}
           path: |
             /home/runner/rpmbuild/RPMS/*
             /home/runner/rpmbuild/SRPMS/*
-#          *.zip
-#            build/*.zip
-#            build.zip
-#            rpmbuild/RPMS/*
-#            build/*.dmg
-
-  windows:
-    runs-on: windows-2019
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Configure Developer Command Prompt for Microsoft Visual C++
-        uses: ilammy/msvc-dev-cmd@v1
-
-      - name: Extract version number
-        id: extract_version
-        run: |
-          $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)' | ForEach-Object { $_.Matches[0].Groups[1].Value })
-          $version = $full_version -replace '\.\d+$'
-          echo "VERSION=$version" >> $env:GITHUB_ENV
-#          $full_version = (Select-String -Path VDVGE.pro -Pattern 'win32:VERSION = (\d+\.\d+\.\d+\.\d+)').Matches.Value
-#          $version = $full_version -replace '\.\d+$'
-#          echo "VERSION=$version" >> $env:GITHUB_ENV
-
-      - name: Print extracted version number
-        run: |
-           echo "VERSION=${{ env.VERSION }}"
-
-#      - name: Install Visual Studio Build Tools
-#        uses: microsoft/setup-msbuild@v2
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-#          version: '6.*'
-#          host: windows
-#          target: desktop
-#          arch: x64
-#          modules: qtbase,qtgui,qtopengl,qtwidgets,qt5compat
-          aqtversion: '==3.1.*'
-          version: '6.8.0'
-          host: 'windows'
-          target: 'desktop'
-          arch: 'win64_msvc2022_64'
-          modules: 'qt5compat'
-
-      - name: Build project
-        run: |
-          qmake6 -spec win32-msvc
-          nmake
-#        shell: cmd
-#          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-
-      - name: Deploy (Windows)
-        run: |
-          windeployqt --release build\vdvge.exe
-#          powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
-#          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
-
-#      - name: Compress files (Windows)
-#        run: |
-#          powershell Compress-Archive -Path build\* -DestinationPath vdvge-${{ env.VERSION }}-qt6-windows-x64.zip
-#          scp vdvge-${{ env.VERSION }}-qt6-windows-x64.zip user@yourserver:/path/to/deploy
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: vdvge-${{ env.VERSION }}-qt6-windows-x64
-#          name: build-${{ matrix.os }}-${{ matrix.arch }}
-          path: |
-            build/*
-#          *.zip
-#            build/*.zip
-#            build.zip
-#            rpmbuild/RPMS/*
-#            build/*.dmg
