@@ -40,7 +40,7 @@ jobs:
 
       - name: Build project
         run: |
-          qmake6 -spec macx-xcode
+          qmake -spec macx-xcode VDVGE.pro
           make
 
       - name: Deploy (Windows)
