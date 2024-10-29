@@ -26,11 +26,6 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-#          version: '6.*'
-#          host: windows
-#          target: desktop
-#          arch: x64
-#          modules: qtbase,qtgui,qtopengl,qtwidgets,qt5compat
           aqtversion: '==3.1.*'
           version: '6.8.0'
           host: 'mac'
@@ -40,12 +35,9 @@ jobs:
 
       - name: Build project
         run: |
-          qmake -spec macx-xcode VDVGE.pro
+          qmake -spec macx-xcode
           xcodebuild -project VDVGE.xcodeproj
-          pwd
-          ls -laF build
-          ls -laF
-#          make
+          file build/vdvge.app/Contents/MacOS/vdvge
 
       - name: Deploy (Windows)
         run: |
