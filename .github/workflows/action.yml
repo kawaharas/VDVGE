@@ -134,7 +134,7 @@ jobs:
       - name: Build RPM package
         run: |
           sudo apt-get install -y rpm
-          sudo apt-get install -y qt6-base-dev qt6-tools-dev libqt6openglwidgets6 libqt6core5compat6
+          sudo apt-get install -y qt6-base-dev qt6-tools-dev libqt6openglwidgets6-dev libqt6core5compat6-dev
           mkdir -p rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS,TMP_SOURCES}
           mv vdvge.spec rpmbuild/SPECS/
           rsync -a --exclude='rpmbuild' ./ rpmbuild/TMP_SOURCES/vdvge-${{ env.VERSION }}/
