@@ -52,7 +52,7 @@ jobs:
           path: |
             build/*
 
-  mac:
+  mac (Qt6.8 - macOS 12):
     runs-on: macos-latest
     steps:
       - name: Checkout code
@@ -78,6 +78,54 @@ jobs:
           target: 'desktop'
           arch: 'clang_64'
           modules: 'qt5compat'
+
+      - name: Build project
+        run: |
+          qmake -spec macx-xcode
+          xcodebuild -project VDVGE.xcodeproj
+
+      - name: Check the target platform of the built binary
+        run: |
+          file build/vdvge.app/Contents/MacOS/vdvge
+  
+      - name: Deploy
+        run: |
+          (cd build && macdeployqt vdvge.app -dmg)
+          mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt6-macos.dmg
+#          macdeployqt build/vdvge.app -dmg
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vdvge-${{ env.VERSION }}-qt6-macos
+          path: |
+            build/*.dmg
+
+  mac (Qt5.15.2 - macOS 10.13):
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract version number
+        id: extract_version
+        run: |
+          version=$(sed -n 's/^else:VERSION = //p' VDVGE.pro)
+          echo "Extracted version: $version"
+          echo "VERSION=$version" >> $GITHUB_ENV
+
+      - name: Print extracted version number
+        run: |
+           echo "VERSION=${{ env.VERSION }}"
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          aqtversion: '==3.1.*'
+          version: '5.15.2'
+          host: 'mac'
+          target: 'desktop'
+          arch: 'clang_64'
 
       - name: Build project
         run: |
