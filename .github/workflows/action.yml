@@ -40,7 +40,7 @@ jobs:
 
       - name: Build project
         run: |
-          qmake -spec macx-xcode
+          qmake6 -spec macx-xcode
           make
 
       - name: Deploy (Windows)
