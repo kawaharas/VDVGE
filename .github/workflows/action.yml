@@ -85,8 +85,8 @@ jobs:
           xcodebuild -project VDVGE.xcodeproj
 
       - name: Check the target platform of the built binary
-          run: |
-            file build/vdvge.app/Contents/MacOS/vdvge
+        run: |
+          file build/vdvge.app/Contents/MacOS/vdvge
   
         - name: Deploy
         run: |
