@@ -41,7 +41,8 @@ jobs:
       - name: Build project
         run: |
           qmake -spec macx-xcode VDVGE.pro
-          make
+          xcodebuild -project VDVGE.xcodeproj
+#          make
 
       - name: Deploy (Windows)
         run: |
