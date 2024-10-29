@@ -9,8 +9,11 @@ Source0:        %{_sourcedir}/%{name}-%{version}.tar.gz
 
 # BuildRequires:  qt6-qtbase-devel
 # BuildRequires:  qt6-qttools-devel
-#BuildRequires:  qt6-base-dev
-#BuildRequires:  qt6-tools-dev
+BuildRequires:  qt6-base-dev
+BuildRequires:  qt6-tools-dev
+BuildRequires:  libqt6core5compat6-dev
+BuildRequires:  libqt6openglwidgets6-dev 
+#BuildRequires:  qt6-qpa-plugins
 
 %description
 VDVGE is visualization software to generate a volume-rendering-like content for Google Earth.
