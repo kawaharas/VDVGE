@@ -130,7 +130,7 @@ jobs:
       - name: Build project
         run: |
           sudo xcode-select --switch /Applications/Xcode_14.1.0.app
-          qmake -spec macx-xcode
+          qmake -spec macx-xcode CONFIG+=sdk_no_version_check
           xcodebuild -project VDVGE.xcodeproj
 
       - name: Check the target platform of the built binary
