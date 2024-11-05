@@ -129,7 +129,7 @@ jobs:
 
       - name: Build project
         run: |
-          qmake -spec macx-g++
+          qmake -spec macx-clang
           make
 #          qmake -spec macx-xcode
 #          xcodebuild -project VDVGE.xcodeproj
