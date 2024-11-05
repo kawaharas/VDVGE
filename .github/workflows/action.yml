@@ -129,8 +129,10 @@ jobs:
 
       - name: Build project
         run: |
-          qmake -spec macx-xcode
-          xcodebuild -project VDVGE.xcodeproj
+          qmake -spec macx-g++
+          make
+#          qmake -spec macx-xcode
+#          xcodebuild -project VDVGE.xcodeproj
 
       - name: Check the target platform of the built binary
         run: |
