@@ -102,7 +102,7 @@ jobs:
             build/*.dmg
 
   mac-qt5:
-    runs-on: macos-13
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -129,9 +129,10 @@ jobs:
 
       - name: Build project
         run: |
-          sudo xcode-select --switch /Applications/Xcode_14.1.0.app
+          sudo xcode-select --switch /Applications/Xcode_14.3.app
           qmake -spec macx-xcode CONFIG+=sdk_no_version_check
           xcodebuild -project VDVGE.xcodeproj
+#          sudo xcode-select --switch /Applications/Xcode_14.1.0.app
 
       - name: Check the target platform of the built binary
         run: |
