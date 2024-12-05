@@ -1,4 +1,4 @@
-name: Build and Deploy Qt6 Project
+name: Build and Deploy Qt Project
 
 on:
   push:
@@ -92,7 +92,6 @@ jobs:
         run: |
           (cd build && macdeployqt vdvge.app -dmg)
           mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt6-macos.dmg
-#          macdeployqt build/vdvge.app -dmg
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -134,10 +133,6 @@ jobs:
           export PATH
           qmake
           make
-#          qmake -spec macx-xcode CONFIG+=sdk_no_version_check
-#          qmake -spec macx-xcode CONFIG+=sdk_no_version_check
-#          xcodebuild -project VDVGE.xcodeproj
-#          sudo xcode-select --switch /Applications/Xcode_14.1.0.app
 
       - name: Check the target platform of the built binary
         run: |
@@ -147,7 +142,6 @@ jobs:
         run: |
           (cd build && macdeployqt vdvge.app -dmg)
           mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt5-macos.dmg
-#          macdeployqt build/vdvge.app -dmg
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
