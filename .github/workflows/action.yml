@@ -118,11 +118,6 @@ jobs:
         run: |
            echo "VERSION=${{ env.VERSION }}"
 
-      - name: Install Xcode 14.3.1
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '14.3.1'
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
@@ -157,7 +152,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: vdvge-${{ env.VERSION }}-qt6-macos
+          name: vdvge-${{ env.VERSION }}-qt5-macos
           path: |
             build/*.dmg
 
