@@ -138,7 +138,7 @@ jobs:
           PATH=/Application/Qt/5.15.2/clang_64/bin:$PATH
           export PATH
           qmake
-          xcodebuild -project VDVGE.xcodeproj
+          make
 #          qmake -spec macx-xcode CONFIG+=sdk_no_version_check
 #          qmake -spec macx-xcode CONFIG+=sdk_no_version_check
 #          xcodebuild -project VDVGE.xcodeproj
