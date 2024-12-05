@@ -134,9 +134,14 @@ jobs:
 
       - name: Build project
         run: |
-          sudo xcode-select --switch /Applications/Xcode_14.3.app
-          qmake -spec macx-xcode CONFIG+=sdk_no_version_check
+          sudo xcode-select --switch /Applications/Xcode_14.3.1.app
+          PATH=/Application/Qt/5.15.2/clang_64/bin:$PATH
+          export PATH
+          qmake
           xcodebuild -project VDVGE.xcodeproj
+#          qmake -spec macx-xcode CONFIG+=sdk_no_version_check
+#          qmake -spec macx-xcode CONFIG+=sdk_no_version_check
+#          xcodebuild -project VDVGE.xcodeproj
 #          sudo xcode-select --switch /Applications/Xcode_14.1.0.app
 
       - name: Check the target platform of the built binary
