@@ -151,3 +151,4 @@ win32 {
 
 OPTION += console
 OPTION -= app_bundle
+
