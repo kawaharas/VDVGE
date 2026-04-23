@@ -1,5 +1,7 @@
 # Volume Data Visualizer for Google Earth (VDVGE)
 
+*[Japanese version is available here.](README.ja.md)*
+
 ## Overview
 
 Volume Data Visualizer for Google Earth (VDVGE) is a software designed to visualize 3D data used in [GrADS](https://cola.gmu.edu/grads/) (a plotting tool for earth science data) and to export the visualization results in a format compatible with [Google Earth](https://earth.google.com/).
