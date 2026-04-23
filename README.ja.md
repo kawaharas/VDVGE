@@ -47,11 +47,11 @@ VDVGEを研究やソフトウェア開発で使用された場合は、以下の
 ### その他の関連文献
 
 **天文データへの応用に関する詳細論文（和文）:**
-* Kawahara, S., Sugiyama, T., Araki, F., & Takahashi, K. (2015). VDVGE: Volume Visualization Software for Google Earth -- Application to Astronomical Data --. *Journal of Space Science Informatics Japan*, 4, 161--171. (in Japanese)
+* Kawahara, S., Sugiyama, T., Araki, F., & Takahashi, K. (2015). VDVGE: Volume Visualization Software for Google Earth - Application to Astronomical Data -. *Journal of Space Science Informatics Japan*, 4, 161-171. (in Japanese)
 
 **初期の開発および歴史的背景:**
-* Araki, F., Kawahara, S., & Matsuoka, D. (2012). Studies of Large-Scale Data Visualization: EXTRAWING and Visual Data Mining. *Annual Report of the Earth Simulator Center April 2011 - March 2012*, 197--200.
-* Araki, F., Kawahara, S., Matsuoka, D., Sugimura, T., Baba, Y., & Takahashi, K. (2011). Studies of Large-Scale Data Visualization: EXTRAWING and Visual Data Mining. *Annual Report of the Earth Simulator Center April 2010 - March 2011*, 195--198.
+* Araki, F., Kawahara, S., & Matsuoka, D. (2012). Studies of Large-Scale Data Visualization: EXTRAWING and Visual Data Mining. *Annual Report of the Earth Simulator Center April 2011 - March 2012*, 197-200.
+* Araki, F., Kawahara, S., Matsuoka, D., Sugimura, T., Baba, Y., & Takahashi, K. (2011). Studies of Large-Scale Data Visualization: EXTRAWING and Visual Data Mining. *Annual Report of the Earth Simulator Center April 2010 - March 2011*, 195-198.
 
 ## 必須環境・注意事項
 
