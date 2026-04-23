@@ -27,7 +27,7 @@ GUI による簡単な操作で、KMLおよびCOLLADAファイルを用いたGoo
 
 ## サンプルデータ
 
-リリースページで提供されているサンプルデータは、大気大循環モデル [AFES](https://gitlab.com/aosg_public/afes) (AGCM for Earth Simulator) により出力されたシミュレーションデータです。一つの物理量（雲水量）について、日本近海のみの切り出し・間引きを行ったものが含まれています。
+リリースページで提供されているサンプルデータ(vdvge-sample)は、大気大循環モデル [AFES](https://gitlab.com/aosg_public/afes) (AGCM for Earth Simulator) により出力されたシミュレーションデータです。一つの物理量（雲水量）について、日本近海のみの切り出し・間引きを行ったものが含まれています。
 
 ## 入力可能なデータについて
 
