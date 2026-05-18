@@ -8,6 +8,8 @@ on:
 jobs:
   windows:
     runs-on: windows-2022
+    env:
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -140,7 +142,7 @@ jobs:
   
       - name: Deploy
         run: |
-          (cd build && macdeployqt vdvge.app -codesign=- -dmg)
+          (cd build && macdeployqt vdvge.app -dmg)
           mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt5-macos.dmg
 
       - name: Upload artifact
