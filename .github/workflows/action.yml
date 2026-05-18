@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-2022
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Configure Developer Command Prompt for Microsoft Visual C++
         uses: ilammy/msvc-dev-cmd@v1
@@ -46,7 +46,7 @@ jobs:
           windeployqt --release build\vdvge.exe
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vdvge-${{ env.VERSION }}-qt6-windows-x64
           path: |
@@ -56,7 +56,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Extract version number
         id: extract_version
@@ -94,7 +94,7 @@ jobs:
           mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt6-macos.dmg
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vdvge-${{ env.VERSION }}-qt6-macos
           path: |
@@ -104,7 +104,7 @@ jobs:
     runs-on: macos-15-intel
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Extract version number
         id: extract_version
@@ -144,7 +144,7 @@ jobs:
           mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt5-macos.dmg
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vdvge-${{ env.VERSION }}-qt5-macos
           path: |
@@ -154,7 +154,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Extract version number
         id: extract_version
@@ -191,7 +191,7 @@ jobs:
           rpmbuild -ba --define "_sourcedir $(pwd)/rpmbuild/SOURCES" rpmbuild/SPECS/vdvge.spec
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vdvge-${{ env.VERSION }}-qt6-ubuntu-x64
           path: |
