@@ -90,7 +90,7 @@ jobs:
   
       - name: Deploy
         run: |
-          (cd build && macdeployqt vdvge.app -dmg)
+          (cd build && macdeployqt vdvge.app -codesign=- -dmg)
           mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt6-macos.dmg
 
       - name: Upload artifact
@@ -140,7 +140,7 @@ jobs:
   
       - name: Deploy
         run: |
-          (cd build && macdeployqt vdvge.app -dmg)
+          (cd build && macdeployqt vdvge.app -codesign=- -dmg)
           mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt5-macos.dmg
 
       - name: Upload artifact
