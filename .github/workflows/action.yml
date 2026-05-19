@@ -103,7 +103,7 @@ jobs:
             build/*.dmg
 
   mac-qt5:
-    runs-on: macos-15
+    runs-on: macos-15-intel
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -142,24 +142,8 @@ jobs:
   
       - name: Deploy
         run: |
-          cd build
-          macdeployqt vdvge.app -no-strip
-          find vdvge.app/Contents/Frameworks -type f -name "*.dylib" -or -name "*.framework" | while read -r file; do
-            codesign --force --timestamp --options=runtime --sign "$DEVELOPER_ID_APPLICATION" "$file"
-          done
-          find vdvge.app/Contents/PlugIns -type f -name "*.dylib" | while read -r file; do
-            codesign --force --timestamp --options=runtime --sign "$DEVELOPER_ID_APPLICATION" "$file"
-          done
-          codesign --force --timestamp --options=runtime --sign "$DEVELOPER_ID_APPLICATION" vdvge.app
-          create-dmg \
-            --volname "vdvge" \
-            --window-size 500 300 \
-            --icon-size 100 \
-            --icon "vdvge.app" 175 120 \
-            --hide-extension "vdvge.app" \
-            --app-drop-link 325 120 \
-            "vdvge-${{ env.VERSION }}-qt5-macos.dmg" \
-            "vdvge.app"
+          (cd build && macdeployqt vdvge.app -dmg)
+          mv build/vdvge.dmg build/vdvge-${{ env.VERSION }}-qt5-macos.dmg
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
